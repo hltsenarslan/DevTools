@@ -1,0 +1,11 @@
+# .gitignore
+.build-cli/
+.build/
+DerivedData/
+xcuserdata/
+*.dSYM
+.DS_Store
+
+# VS Code
+.vscode/ipch/
+.vscode/.ccls-cache/
