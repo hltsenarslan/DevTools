@@ -1,0 +1,28 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build-cli",
+      "type": "shell",
+      "command": "bash",
+      "args": ["-lc", "chmod +x ./build.sh && CONFIG=Debug ./build.sh"],
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "build-cli (Release)",
+      "type": "shell",
+      "command": "bash",
+      "args": ["-lc", "chmod +x ./build.sh && CONFIG=Release ./build.sh"],
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "clean-cli",
+      "type": "shell",
+      "command": "bash",
+      "args": ["-lc", "rm -rf .build-cli"],
+      "problemMatcher": []
+    }
+  ]
+}

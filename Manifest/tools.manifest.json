@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "tools": [
+    { "id": "system_info", "name": "System Info", "type": "builtin", "icon": "desktopcomputer" },
+    { "id": "json_beautifier", "name": "JSON Beautifier", "type": "builtin", "icon": "curlybraces" },
+    { "id": "uuid_generator",  "name": "UUID Generator",  "type": "builtin", "icon": "number" },
+    { "id": "base64_coder",    "name": "Base64 Coder",    "type": "builtin", "icon": "arrow.up.arrow.down.square" },
+    { "id": "jwt_inspector",   "name": "JWT Inspector",   "type": "builtin", "icon": "lock.open" },
+    { "id": "url_coder",       "name": "URL Encoder/Decoder", "type": "builtin", "icon": "link" },
+    { "id": "regex_tester",    "name": "Regex Tester",    "type": "builtin", "icon": "text.magnifyingglass" }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "DevTools (Debug via build.sh)",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/.build-cli/DevTools.app/Contents/MacOS/DevTools",
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "build-cli",
+      "args": [],
+      "env": {},
+      "stopOnEntry": false
+    },
+    {
+      "name": "DevTools (Attach)",
+      "type": "lldb",
+      "request": "attach",
+      "program": "DevTools"
+    }
+  ]
+}
