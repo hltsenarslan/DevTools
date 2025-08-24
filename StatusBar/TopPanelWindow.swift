@@ -1,40 +1,52 @@
+// StatusBar/TopPanelWindow.swift
 import AppKit
 
 final class TopPanelWindow: NSPanel {
+    // init DIŞINDA override’lar:
+    override var canBecomeKey: Bool { true }
+    override var canBecomeMain: Bool { false }
+
     init(contentView: NSView) {
-        let style: NSWindow.StyleMask = [.nonactivatingPanel, .borderless]
-        super.init(contentRect: .zero, styleMask: style, backing: .buffered, defer: false)
-        self.isOpaque = false
-        self.backgroundColor = .clear
-        self.level = .statusBar
-        self.hidesOnDeactivate = false
-        self.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary]
-        self.hasShadow = true
-        self.titleVisibility = .hidden
-        self.titlebarAppearsTransparent = true
-        self.standardWindowButton(.closeButton)?.isHidden = true
-        self.standardWindowButton(.miniaturizeButton)?.isHidden = true
-        self.standardWindowButton(.zoomButton)?.isHidden = true
+        super.init(
+            contentRect: .zero,
+            styleMask: [.nonactivatingPanel, .borderless],
+            backing: .buffered,
+            defer: false
+        )
 
-        let container = NSVisualEffectView()
-        container.material = .sidebar
-        container.state = .active
-        container.blendingMode = .behindWindow
-        container.translatesAutoresizingMaskIntoConstraints = false
-        container.addSubview(contentView)
-
-        self.contentView = container
-
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            contentView.leadingAnchor.constraint(equalTo: container.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: container.trailingAnchor),
-            contentView.topAnchor.constraint(equalTo: container.topAnchor),
-            contentView.bottomAnchor.constraint(equalTo: container.bottomAnchor)
-        ])
-
+        // Tam şeffaf pencere + gölge
+        isOpaque = false
+        backgroundColor = .clear
+        hasShadow = true
+        level = .statusBar
+        hidesOnDeactivate = false
+        collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary]
+        titleVisibility = .hidden
+        titlebarAppearsTransparent = true
         isMovableByWindowBackground = true
         ignoresMouseEvents = false
         isFloatingPanel = true
+        becomesKeyOnlyIfNeeded = false
+
+        // Blur katmanı
+        let blur = NSVisualEffectView(frame: .zero)
+        blur.material = .menu // alternatif: .sidebar, .underWindowBackground
+        blur.blendingMode = .withinWindow // cam efekti için daha iyi
+        blur.state = .active
+        blur.wantsLayer = true
+        blur.layer?.cornerRadius = 18
+        blur.layer?.masksToBounds = true
+        blur.translatesAutoresizingMaskIntoConstraints = false
+
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        blur.addSubview(contentView)
+        self.contentView = blur
+
+        NSLayoutConstraint.activate([
+            contentView.leadingAnchor.constraint(equalTo: blur.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: blur.trailingAnchor),
+            contentView.topAnchor.constraint(equalTo: blur.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: blur.bottomAnchor),
+        ])
     }
 }

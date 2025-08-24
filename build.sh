@@ -54,6 +54,7 @@ swiftc \
   -framework AppKit \
   -framework SwiftUI \
   -framework Combine \
+  -framework Carbon \
   -emit-executable \
   -module-name "$APP_NAME" \
   -o "${MACOS_DIR}/${APP_NAME}" \

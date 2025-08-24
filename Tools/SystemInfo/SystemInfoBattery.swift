@@ -24,7 +24,7 @@ enum BatteryReader {
                 info.percentage = Int((Double(cap) / Double(max)) * 100.0 + 0.5)
             }
             if let state = desc[kIOPSPowerSourceStateKey as String] as? String {
-                // AC Power / Battery Power
+                info.condition = (info.condition ?? "") + " (\(state))"
             }
             if let isCharging = desc[kIOPSIsChargingKey as String] as? Bool {
                 info.isCharging = isCharging
